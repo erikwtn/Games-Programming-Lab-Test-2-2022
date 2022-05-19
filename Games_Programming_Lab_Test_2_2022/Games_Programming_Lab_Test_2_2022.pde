@@ -8,6 +8,8 @@ char gender = 'n';
 color tadColor = color(0, 255, 255); // the color of the tadpole
 color bckColor = color(0, 255, 255); // background color based off tadColor
 
+CreateTadpole createTadpole;
+
 void setup()
 {
   background(0);
@@ -18,6 +20,8 @@ void setup()
   genders[1] = 'm'; // m indicates male and is drawn with a line and a circle on the last segment.
   genders[2] = 'f'; // f indicates female and is drawn with a circle in the bottom segment.
   genders[3] = 'h'; // h indicates hermaphrodite and is drawn with both male and female symbols.
+  
+  createTadpole = new CreateTadpole();
 }
 
 void draw()
@@ -44,4 +48,14 @@ void RandomiseStats () // randomises the variables that determine how the tadpol
   }
   
   gender = genders[newGender];
+}
+
+void keyPressed()
+{
+  if (key == ' ')
+  {
+    RandomiseStats();
+    background(bckColor);
+    createTadpole = new CreateTadpole();
+  }
 }
