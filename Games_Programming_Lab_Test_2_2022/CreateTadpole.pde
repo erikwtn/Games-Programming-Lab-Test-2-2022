@@ -33,14 +33,7 @@ class CreateTadpole
     for (int i = 0; i < tadLength; i++)
     {
       stroke(tadColor);
-
-      if (i == 0)
-      {
-        fill(tadColor);
-      } else
-      {
-        noFill();
-      }
+      noFill();
 
       circle(posX, posY + (i * step), step);
 
@@ -76,16 +69,16 @@ class CreateTadpole
     {
       for (int b = 0; b < eyes; b++)
       {
-        line(posX, posY, posX - (b * 10) - 15, posY - step + (b*3));
-        line(posX, posY, posX + (b * 10) + 15, posY - step + (b*3));
-        
+        line(posX, posY - step/2, posX - (b * 10) - 15, posY - step + (b*3));
+        line(posX, posY - step/2, posX + (b * 10) + 15, posY - step + (b*3));
+
         circle(posX - (b * 10) - 15, posY - step + (b*3) - 5, 10);
         circle(posX + (b * 10) + 15, posY - step + (b*3) - 5, 10);
       }
 
       if (eyes % 2 != 0)
       {
-        line(posX, posY, posX, posY - step);
+        line(posX, posY - step/2, posX, posY - step);
         circle(posX, posY - step - 5, 10);
       }
     }

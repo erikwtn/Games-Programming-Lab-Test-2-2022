@@ -32,10 +32,16 @@ void setup()
   genders[3] = 'h'; // h indicates hermaphrodite and is drawn with both male and female symbols.
 
   createTadpole = new CreateTadpole(tadLength, limbs, eyes, gender, tadColor, name);
+  println(tadLength, limbs, eyes, gender, tadColor, name);
 }
 
 void draw()
 {
+  fill(tadColor);
+  textAlign(CENTER);
+  textSize(28);
+  text("Click to randomise the tadpoles gender", width/2, 100);
+    
   createTadpole.DrawTadpole();
 }
 
@@ -43,7 +49,6 @@ void RandomiseStats () // randomises the variables that determines how the tadpo
 {
   tadLength = int(random(1, 9));
   eyes = int(random(0, 9));
-  println(eyes);
   float hue = random(0, 255);
   name = "";
 
@@ -90,5 +95,15 @@ void keyPressed() // if space is pressed the stats are randomised
     RandomiseStats();
     background(bckColor);
     createTadpole = new CreateTadpole(tadLength, limbs, eyes, gender, tadColor, name);
+    println(tadLength, limbs, eyes, gender, tadColor, name);
   }
+}
+
+void mousePressed()
+{
+  int reGender = int(random(0, 4));
+  gender = genders[reGender];
+  background(bckColor);
+  createTadpole = new CreateTadpole(tadLength, limbs, eyes, gender, tadColor, name);
+  println(tadLength, limbs, eyes, gender, tadColor, name);
 }
