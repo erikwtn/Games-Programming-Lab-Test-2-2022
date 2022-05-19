@@ -19,6 +19,8 @@ class CreateTadpole
     this.gender = gender;
     this.tadColor = tadColor;
     this.name = name;
+
+    this.eyes = this.eyes / 2;
   }
 
   void DrawTadpole() // draws circles based on tadpole length, checks gender and draws additional shapes depending on the gender
@@ -27,23 +29,25 @@ class CreateTadpole
     textAlign(CENTER);
     textSize(72);
     text(name, posX, posY - step*2);
+
     for (int i = 0; i < tadLength; i++)
     {
       stroke(tadColor);
-      noFill();
 
-      circle(posX, posY + (i * step), step);
-      
       if (i == 0)
       {
-        line(posX, posY - step/2, posX, posY - step);
-        circle(posX, posY - step - 7.5, 15);
-        
-        line(posX, posY - step/2, posX + 50, posY - step);
-        circle(posX + 50, posY - step - 7.5, 15);
-        
-        line(posX, posY - step/2, posX - 50, posY - step);
-        circle(posX - 50, posY - step - 7.5, 15);
+        fill(tadColor);
+      } else
+      {
+        noFill();
+      }
+
+      circle(posX, posY + (i * step), step);
+
+      if (limbs)
+      {
+        line(posX - step/2, posY + (i*step), posX - step*1.5, posY + (i*step));
+        line(posX + step/2, posY + (i*step), posX + step*1.5, posY + (i*step));
       }
 
       if (i == tadLength - 1)
@@ -53,18 +57,36 @@ class CreateTadpole
           line(posX, posY + (i * step) + step/2, posX, posY + (i * step) + step);
           circle(posX, posY + (i * step) + step + 7.5, 15);
         }
-        
-        if(gender == 'f')
+
+        if (gender == 'f')
         {
           circle(posX, posY + (i * step), step/1.4);
         }
-        
-        if(gender == 'h')
+
+        if (gender == 'h')
         {
           line(posX, posY + (i * step) + step/2, posX, posY + (i * step) + step);
           circle(posX, posY + (i * step) + step + 7.5, 15);
           circle(posX, posY + (i * step), step/1.4);
         }
+      }
+    }
+
+    if (eyes != 0)
+    {
+      for (int b = 0; b < eyes; b++)
+      {
+        line(posX, posY, posX - (b * 10) - 15, posY - step + (b*3));
+        line(posX, posY, posX + (b * 10) + 15, posY - step + (b*3));
+        
+        circle(posX - (b * 10) - 15, posY - step + (b*3) - 5, 10);
+        circle(posX + (b * 10) + 15, posY - step + (b*3) - 5, 10);
+      }
+
+      if (eyes % 2 != 0)
+      {
+        line(posX, posY, posX, posY - step);
+        circle(posX, posY - step - 5, 10);
       }
     }
   }

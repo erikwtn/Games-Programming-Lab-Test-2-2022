@@ -32,7 +32,6 @@ void setup()
   genders[3] = 'h'; // h indicates hermaphrodite and is drawn with both male and female symbols.
 
   createTadpole = new CreateTadpole(tadLength, limbs, eyes, gender, tadColor, name);
-  println(tadLength, limbs, eyes, gender, tadColor, name);
 }
 
 void draw()
@@ -44,17 +43,18 @@ void RandomiseStats () // randomises the variables that determines how the tadpo
 {
   tadLength = int(random(1, 9));
   eyes = int(random(0, 9));
+  println(eyes);
   float hue = random(0, 255);
   name = "";
 
-  int hasLimbs = int(random(0, 1));
+  int hasLimbs = int(random(0, 100));
   int newGender = int(random(0, 4));
   int nameLength = int(random(1, 5));
 
   tadColor = color(hue, 255, 255);
   bckColor = color(hue, 200, 50);
 
-  if (hasLimbs == 0)
+  if (hasLimbs % 2 == 0)
   {
     limbs = false;
   } else {
@@ -90,6 +90,5 @@ void keyPressed() // if space is pressed the stats are randomised
     RandomiseStats();
     background(bckColor);
     createTadpole = new CreateTadpole(tadLength, limbs, eyes, gender, tadColor, name);
-    println(tadLength, limbs, eyes, gender, tadColor, name);
   }
 }
