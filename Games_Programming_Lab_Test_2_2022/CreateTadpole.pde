@@ -21,7 +21,7 @@ class CreateTadpole
     this.name = name;
   }
 
-  void DrawTadpole()
+  void DrawTadpole() // draws circles based on tadpole length, checks gender and draws additional shapes depending on the gender
   {
     fill(tadColor);
     textAlign(CENTER);
