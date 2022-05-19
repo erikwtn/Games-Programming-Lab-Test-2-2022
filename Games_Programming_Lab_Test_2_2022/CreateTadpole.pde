@@ -5,17 +5,67 @@ class CreateTadpole
   int eyes; // The number of eyes. These are drawn on stalks from the head as per the video. This will range between 0 and 9
   char gender;
   color tadColor; // the color of the tadpole
-  
-  CreateTadpole(int tadLength, boolean limbs, int eyes, char gender, color tadColor)
+  String name;
+
+  float posX = width/2;
+  float posY = height/2;
+  float step = 80;
+
+  CreateTadpole(int tadLength, boolean limbs, int eyes, char gender, color tadColor, String name)
   {
     this.tadLength = tadLength;
     this.limbs = limbs;
-    this. eyes = eyes;
+    this.eyes = eyes;
     this.gender = gender;
     this.tadColor = tadColor;
+    this.name = name;
   }
 
   void DrawTadpole()
   {
+    fill(tadColor);
+    textAlign(CENTER);
+    textSize(72);
+    text(name, posX, posY - step*2);
+    for (int i = 0; i < tadLength; i++)
+    {
+      stroke(tadColor);
+      noFill();
+
+      circle(posX, posY + (i * step), step);
+      
+      if (i == 0)
+      {
+        line(posX, posY - step/2, posX, posY - step);
+        circle(posX, posY - step - 7.5, 15);
+        
+        line(posX, posY - step/2, posX + 50, posY - step);
+        circle(posX + 50, posY - step - 7.5, 15);
+        
+        line(posX, posY - step/2, posX - 50, posY - step);
+        circle(posX - 50, posY - step - 7.5, 15);
+      }
+
+      if (i == tadLength - 1)
+      {
+        if (gender == 'm')
+        {
+          line(posX, posY + (i * step) + step/2, posX, posY + (i * step) + step);
+          circle(posX, posY + (i * step) + step + 7.5, 15);
+        }
+        
+        if(gender == 'f')
+        {
+          circle(posX, posY + (i * step), step/1.4);
+        }
+        
+        if(gender == 'h')
+        {
+          line(posX, posY + (i * step) + step/2, posX, posY + (i * step) + step);
+          circle(posX, posY + (i * step) + step + 7.5, 15);
+          circle(posX, posY + (i * step), step/1.4);
+        }
+      }
+    }
   }
 }
